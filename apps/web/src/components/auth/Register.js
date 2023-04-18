@@ -2,12 +2,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function Register() {
-  const router = useRouter();
-
-  function backToLogin() {
-    router.push("/");
-  }
-
   return (
     <>
       <form>
@@ -20,7 +14,7 @@ export default function Register() {
         <button>Register</button>
       </form>
 
-      <Link href={"/"}>Already have an account? Click here to login!</Link>
+      <Link href={"/Login"}>Already have an account? Click here to login!</Link>
     </>
   );
 }

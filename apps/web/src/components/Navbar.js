@@ -9,7 +9,6 @@ export default function Navbar() {
   const { user, username } = useContext(UserContext);
 
   const router = useRouter();
-
   const signOut = () => {
     auth.signOut();
     router.reload();
@@ -20,7 +19,7 @@ export default function Navbar() {
       <ul>
         <li>
           <Link href="/">
-            <button className="btn-logo">NXT</button>
+            <button className="btn-logo">youConcert</button>
           </Link>
         </li>
 
@@ -28,11 +27,15 @@ export default function Navbar() {
         {username && (
           <>
             <li>
-              <button onClick={signOut}>Sign Out</button>
+              <Link href="/">
+                <button onClick={signOut}>Sign Out</button>
+              </Link>
             </li>
 
             <li>
-              <Link href={`/${username}`}></Link>
+              <Link href={`/${username}`}>
+                <img src={user?.photoURL} />
+              </Link>
             </li>
           </>
         )}
@@ -40,7 +43,7 @@ export default function Navbar() {
         {/* user is not signed OR has not created username */}
         {!username && (
           <li>
-            <Link href="/index">
+            <Link href="/Login">
               <button className="btn-blue">Log in</button>
             </Link>
           </li>

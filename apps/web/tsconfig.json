@@ -1,5 +1,5 @@
 {
   "extends": "tsconfig/nextjs.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/Register.tsx", "src/utils/firebase.js", "src/pages/index.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/Register.tsx", "src/utils/firebase.js", "src/pages/index.js", "src/pages/_app.js", "src/utils/hooks.js"],
   "exclude": ["node_modules"]
 }

@@ -1,17 +1,26 @@
 import Link from "next/link";
 import { SignInWithEmail } from "./SignInWithEmail";
 import { SignInWithGoogle } from "./SignInWithGoogle";
+import { SignOutButton } from "./SignOutButton";
+import { UsernameForm } from "./UsernameForm";
+import { useContext } from "react";
+import { UserContext } from "../../utils/context";
 
 export default function Login() {
-  const user = null;
-  const username = null;
+  const { user, username } = useContext(UserContext);
   return (
     <>
-      <SignInWithEmail />
+      {user ? (
+        !username ? (
+          <UsernameForm />
+        ) : (
+          <SignOutButton />
+        )
+      ) : (
+        <SignInWithEmail /> || <SignInWithGoogle />
+      )}
 
-      <SignInWithGoogle />
-
-      <Link href={"/register"}>
+      <Link href={"/Register"}>
         You dont have an account? Click here to register!
       </Link>
     </>
