@@ -1,10 +1,11 @@
-import Link from "next/link";
 import { SignInWithEmail } from "./SignInWithEmail";
 import { SignInWithGoogle } from "./SignInWithGoogle";
 import { SignOutButton } from "./SignOutButton";
 import { UsernameForm } from "./UsernameForm";
 import { useContext } from "react";
 import { UserContext } from "../../utils/context";
+import Stripe from "../Stripe"
+import Link from "next/link";
 
 export default function Login() {
   const { user, username } = useContext(UserContext);
@@ -14,15 +15,20 @@ export default function Login() {
         !username ? (
           <UsernameForm />
         ) : (
-          <SignOutButton />
+          <>
+            <Stripe />
+            <SignOutButton />
+          </>
         )
       ) : (
-        <SignInWithEmail /> || <SignInWithGoogle />
+        <>
+          <SignInWithEmail />
+          <SignInWithGoogle />
+          <Link href={"/Register"}>
+            You dont have an account? Click here to register!
+          </Link>
+        </>
       )}
-
-      <Link href={"/Register"}>
-        You dont have an account? Click here to register!
-      </Link>
     </>
   );
 }

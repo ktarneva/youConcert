@@ -6,7 +6,6 @@ export default function Register() {
     <>
       <form>
         <input type="email" placeholder="Enter your email" />
-        <input type="username" placeholder="Enter your username" />
         <input type="password" placeholder="Enter your password" />
         <input type="first_name" placeholder="First name" />
         <input type="last_name" placeholder="Last name" />

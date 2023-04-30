@@ -1,3 +1,10 @@
+import debounce from "lodash.debounce";
+import { firestore } from "../../utils/firebase";
+import { useEffect, useState } from "react";
+import { useCallback } from "react";
+import { useContext } from "react";
+import { UserContext } from "../../utils/context";
+
 // Username form
 export function UsernameForm() {
   const [formValue, setFormValue] = useState("");
@@ -19,6 +26,8 @@ export function UsernameForm() {
       username: formValue,
       photoURL: user.photoURL,
       displayName: user.displayName,
+      email:user.email,
+      password:user.password
     });
     batch.set(usernameDoc, { uid: user.uid });
 
@@ -56,7 +65,7 @@ export function UsernameForm() {
       if (username.length >= 3) {
         const ref = firestore.doc(`usernames/${username}`);
         const { exists } = await ref.get();
-        console.log("Firestore read executed!");
+        console.log("Firestore read executed");
         setIsValid(!exists);
         setLoading(false);
       }

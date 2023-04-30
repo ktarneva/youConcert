@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { auth } from "../../utils/firebase";
 
 export function SignInWithEmail() {
   const [email, setEmail] = useState("");
-  const [password, SetPassword] = useState("");
+  const [password, setPassword] = useState("");
 
   async function signInWithEmail() {
     try {
-      await auth
+      const userCredentials = await firebase
+        .auth()
         .signInWithEmailAndPassword(email, password)
         .then(async (authCreds) => {
           const id_token = await authCreds.user?.getIdToken();
@@ -31,7 +31,7 @@ export function SignInWithEmail() {
           type="password"
           placeholder="Enter your password"
           value={password}
-          onChange={(e) => SetPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </form>
       <button onClick={signInWithEmail}>Sign In</button>

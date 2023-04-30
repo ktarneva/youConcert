@@ -1,3 +1,3 @@
-export default function PostPage({}) {
+export default function VideosPage({}) {
   return <main> </main>;
 }
