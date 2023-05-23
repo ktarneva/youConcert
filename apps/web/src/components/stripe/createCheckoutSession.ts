@@ -12,7 +12,7 @@ export async function createCheckoutSession(uid : string) {
       success_url: window.location.origin,
       cancel_url: window.location.origin
     });
-    checkoutSessionRef.onSnapshot(async (snap) => {
+    checkoutSessionRef.onSnapshot(async (snap: firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData>) => {
       const sessionId = snap.data()?.sessionId;
   
       if (sessionId) {
