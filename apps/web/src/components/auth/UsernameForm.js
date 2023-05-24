@@ -5,7 +5,7 @@ import { useCallback } from "react";
 import { useContext } from "react";
 import { UserContext } from "../../utils/context";
 
-// Username form
+/*  Username form */
 export function UsernameForm() {
   const [formValue, setFormValue] = useState("");
   const [isValid, setIsValid] = useState(false);
@@ -16,29 +16,28 @@ export function UsernameForm() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    // Create refs for both documents
+    /* Create refs for both documents */
     const userDoc = firestore.doc(`users/${user.uid}`);
     const usernameDoc = firestore.doc(`usernames/${formValue}`);
 
-    // Commit both docs together as a batch write.
-    const batch = firestore.batch();
+    /* Commit both docs together as a batch write.*/
     batch.set(userDoc, {
       username: formValue,
       photoURL: user.photoURL,
       displayName: user.displayName,
-      email:user.email,
-      password:user.password
+      email: user.email,
+      password: user.password,
     });
     batch.set(usernameDoc, { uid: user.uid });
 
     await batch.commit();
   };
   const onChange = (e) => {
-    // Force form value typed in form to match correct format
+    /* Force form value typed in form to match correct format */
     const val = e.target.value.toLowerCase();
     const re = /^(?=[a-zA-Z0-9._]{3,15}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
 
-    // Only set form value if length is < 3 OR it passes regex
+    /* Only set form value if length is < 3 OR it passes regex */
     if (val.length < 3) {
       setFormValue(val);
       setLoading(false);
@@ -58,8 +57,8 @@ export function UsernameForm() {
     checkUsername(formValue);
   }, [formValue]);
 
-  // Hit the database for username match after each debounced change
-  // useCallback is required for debounce to work
+  /* Hit the database for username match after each debounced change
+   useCallback is required for debounce to work */
   const checkUsername = useCallback(
     debounce(async (username) => {
       if (username.length >= 3) {

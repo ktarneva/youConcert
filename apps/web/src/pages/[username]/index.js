@@ -11,7 +11,7 @@ export async function getServerSideProps({ query }) {
       notFound: true,
     };
   }
-  //JSON serialicable data
+  /* JSON serialicable data */
   let user = null;
 
   if (userDoc) {
@@ -24,7 +24,7 @@ export async function getServerSideProps({ query }) {
 
 export default function UserProfilePage({ user }) {
   return (
-    <main>
+    <main className="p-60 items-center">
       <UserProfile user={user} />
     </main>
   );
