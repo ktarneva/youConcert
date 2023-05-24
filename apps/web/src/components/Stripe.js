@@ -13,7 +13,7 @@ export default function Stripe() {
           Upgrade to basic!
         </button>
       ) : (
-        <h2>You are awesome!</h2>
+        <h2>Upgraded to basic!</h2>
       )}
     </div>
   );

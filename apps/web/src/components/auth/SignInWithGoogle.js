@@ -14,7 +14,7 @@ export function SignInWithGoogle() {
   }
 
   return (
-    <button className="btn-google" onClick={singInWithGoogle}>
+    <button  className="px-4 py-[6px] rounded-lg font-bold bg-white mr-2" onClick={singInWithGoogle}>
       <img src={"./google.png"} width="30px" />
       Sign in with Google
     </button>
