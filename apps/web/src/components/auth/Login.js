@@ -2,9 +2,11 @@ import { SignOutButton } from "./SignOutButton";
 import { UsernameForm } from "./UsernameForm";
 import { useContext } from "react";
 import { UserContext } from "../../utils/context";
+import { SignInWithGoogle } from "../auth/SignInWithGoogle";
 import Stripe from "../Stripe";
+import React from "react";
 
-export default function Login() {
+function Login() {
   const { user, username } = useContext(UserContext);
   return (
     <>
@@ -18,8 +20,9 @@ export default function Login() {
           </>
         )
       ) : (
-        <></>
+        <SignInWithGoogle />
       )}
     </>
   );
 }
+export default Login;

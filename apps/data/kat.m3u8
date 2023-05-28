@@ -7,10 +7,9 @@
 kat-0.ts
 #EXTINF:12.500,
 kat-1.ts
-#EXTINF:11.514,
+#EXTINF:12.500,
 kat-2.ts
-#EXT-X-DISCONTINUITY
-#EXTINF:12.499,
+#EXTINF:12.500,
 kat-3.ts
 #EXTINF:12.500,
 kat-4.ts
@@ -36,9 +35,3 @@ kat-13.ts
 kat-14.ts
 #EXTINF:12.500,
 kat-15.ts
-#EXTINF:12.500,
-kat-16.ts
-#EXTINF:12.500,
-kat-17.ts
-#EXTINF:7.776,
-kat-18.ts

@@ -16,28 +16,28 @@ export function UsernameForm() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    /* Create refs for both documents */
+    // Create refs for both documents
     const userDoc = firestore.doc(`users/${user.uid}`);
     const usernameDoc = firestore.doc(`usernames/${formValue}`);
 
-    /* Commit both docs together as a batch write.*/
+    // Commit both docs together as a batch write.
+    const batch = firestore.batch();
     batch.set(userDoc, {
       username: formValue,
       photoURL: user.photoURL,
       displayName: user.displayName,
-      email: user.email,
-      password: user.password,
     });
     batch.set(usernameDoc, { uid: user.uid });
 
     await batch.commit();
   };
+
   const onChange = (e) => {
-    /* Force form value typed in form to match correct format */
+    // Force form value typed in form to match correct format
     const val = e.target.value.toLowerCase();
     const re = /^(?=[a-zA-Z0-9._]{3,15}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
 
-    /* Only set form value if length is < 3 OR it passes regex */
+    // Only set form value if length is < 3 OR it passes regex
     if (val.length < 3) {
       setFormValue(val);
       setLoading(false);
@@ -57,14 +57,14 @@ export function UsernameForm() {
     checkUsername(formValue);
   }, [formValue]);
 
-  /* Hit the database for username match after each debounced change
-   useCallback is required for debounce to work */
+  // Hit the database for username match after each debounced change
+  // useCallback is required for debounce to work
   const checkUsername = useCallback(
     debounce(async (username) => {
       if (username.length >= 3) {
         const ref = firestore.doc(`usernames/${username}`);
         const { exists } = await ref.get();
-        console.log("Firestore read executed");
+        console.log("Firestore read executed!");
         setIsValid(!exists);
         setLoading(false);
       }
@@ -75,9 +75,12 @@ export function UsernameForm() {
   return (
     !username && (
       <section>
-        <h3>Choose Username</h3>
+        <div className="h-screen flex object-center items-center justify-center ">
+          Choose Username
+        </div>
         <form onSubmit={onSubmit}>
           <input
+            className="text-black font-bold"
             name="username"
             placeholder="myname"
             value={formValue}
@@ -88,7 +91,11 @@ export function UsernameForm() {
             isValid={isValid}
             loading={loading}
           />
-          <button type="submit" className="btn-green" disabled={!isValid}>
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+            disabled={!isValid}
+          >
             Choose
           </button>
 
