@@ -3,14 +3,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "src/pages/Register.tsx",
-    "src/utils/firebase.js",
-    "src/pages/index.js",
-    "src/pages/_app.js",
-    "src/utils/hooks.js",
-    "src/components/stripe/initializeStripe.ts",
-    "src/components/stripe/createCheckoutSession.ts"
+    "**/*.tsx"
   ],
   "exclude": ["node_modules"]
 }

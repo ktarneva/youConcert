@@ -19,6 +19,9 @@ spec:
           image: git-auth:latest
           ports:
             - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: secrets
 ---
 apiVersion: v1
 kind: Service
