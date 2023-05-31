@@ -21,7 +21,7 @@ async function addStreamKeyToUser(user: firebase.User) {
   console.log(`Stream key generated and added to user with ID: ${user.uid}`);
 }
 export default function useBasicStatus(user: firebase.User) {
-  const [basicStatus, setBasicStatus] = useState < Boolean > (false);
+  const [basicStatus, setBasicStatus] = useState < boolean > (false);
 
   useEffect(() => {
     if (user) {
