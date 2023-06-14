@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import firebase from "../../utils/firebase";
+import firebase from "../../../../utils/firebase";
 import isUserBasic from "./isUserBasic";
 
 export default function useBasicStatus(user: firebase.User) {
-  const [basicStatus, setBasicStatus] = useState < Boolean > (false);
+  const [basicStatus, setBasicStatus] = useState < boolean > (false);
 
   useEffect(() => {
-    if (user) {
-      const checkBasicStatus = async function () {     
+    if (user) {   
+      const checkBasicStatus = async function () {
         try {
           setBasicStatus(await isUserBasic());
         } catch (error) {
@@ -18,5 +18,6 @@ export default function useBasicStatus(user: firebase.User) {
       checkBasicStatus();
     }
   }, [user]);
+  
   return basicStatus;
 }

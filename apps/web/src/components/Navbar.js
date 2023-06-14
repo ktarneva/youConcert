@@ -5,7 +5,6 @@ import { UserContext } from "../utils/context";
 import { auth } from "../utils/firebase";
 import Logo from "../../public/youConcert_logo.png";
 import Image from "next/image";
-import React from "react";
 import Login from "./auth/Login";
 
 // Top navbar

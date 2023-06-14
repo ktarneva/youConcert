@@ -8,6 +8,9 @@
       "dependsOn": ["^build"],
       "env": ["RABBIT","PORT"]
     },
+    "deploy": {
+      "dependsOn": ["build", "test", "lint"]
+    },
     "test": {
       "outputs": ["coverage/**"],
       "dependsOn": []

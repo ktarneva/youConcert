@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: git-auth:latest
+          image: youconcertcontainer.azurecr.io/livestream/auth 
           ports:
             - containerPort: 8000
           envFrom:
@@ -30,6 +30,7 @@ metadata:
 spec:
   selector:
     app: auth
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 8000
