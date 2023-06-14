@@ -1,6 +1,6 @@
 import useBasicStatus from "./stripe/useBasicStatus";
 import { createCheckoutSession } from "./stripe/createCheckoutSession";
-import firebase from "../../../utils/firebase";
+import firebase from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function Stripe() {

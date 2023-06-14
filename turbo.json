@@ -1,33 +1,37 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local","**/.env"],
-  "globalEnv": ["PORT"],
-  "pipeline": {
-    "build": {
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "public/dist/**"],
-      "dependsOn": ["^build"],
-      "env": ["RABBIT","PORT"]
-    },
-    "deploy": {
-      "dependsOn": ["build", "test", "lint"]
-    },
-    "test": {
-      "outputs": ["coverage/**"],
-      "dependsOn": []
-    },
-    "lint": {
-      "dependsOn": ["^build"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
-    },
-    "clean": {
-      "cache": false
-    },
-    "start": {
-      "cache": false,
-      "persistent": true
+   "$schema": "https://turbo.build/schema.json",
+    "globalDependencies": [".env", ".env.**"],
+    "globalEnv": ["NODE_ENV"],
+      
+    "pipeline": {
+      "build": {
+        "outputs": ["dist/**", ".next/**", "public/dist/**", "!.next/cache/**"],
+        "dependsOn": ["^build"],
+        "env": [
+        "PORT",
+        "RABBIT",
+        "API_KEY",
+        "AUTH_DOMAIN",
+        "PROJECT_ID",
+        "STORAGE_BUCKET",
+        "MESSAGING_SENDER_ID",
+        "APP_ID",
+        "MEASUREMENT_ID"
+        ]
+      },
+      "lint": {
+        "dependsOn": ["^build"]
+      },
+      "dev": {
+        "cache": false,
+        "persistent": true
+      },
+      "start": {
+        "cache": false,
+        "persistent": true
+      },
+      "clean": {
+        "cache": false
+      }
     }
   }
-}

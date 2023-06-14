@@ -1,17 +1,20 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import "firebase/compat/auth";
 import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
 import "firebase/compat/firestore";
-
-const firebaseConfig = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId,
-  measurementId: process.env.measurementId,
-};
+import * as functions from 'firebase-functions'
+  
+const firebaseConfig = require('config')
+(functions.config().config.api_key)
+(functions.config().config.project_id)
+(functions.config().config.app_id)
+(functions.config().config.measurement_id)
+(functions.config().config.auth_domain)
+(functions.config().config.messaging_sender_id)
+(functions.config().config.storage_bucket)
 
 // Use this to initialize the firebase App
 if (firebase.apps.length === 0) {
