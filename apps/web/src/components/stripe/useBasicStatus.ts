@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import firebase from "../../../../utils/firebase";
+import firebase from "../../utils/firebase";
 import isUserBasic from "./isUserBasic";
 
 export default function useBasicStatus(user: firebase.User) {

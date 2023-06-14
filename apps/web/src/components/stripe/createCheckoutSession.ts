@@ -1,4 +1,4 @@
-import firebase from "../../../../utils/firebase";
+import firebase from "../../utils/firebase";
 import initializeStripe from "./initializeStripe";
 
 export async function createCheckoutSession(uid : string) {

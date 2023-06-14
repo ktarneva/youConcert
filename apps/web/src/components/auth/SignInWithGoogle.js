@@ -1,4 +1,4 @@
-import { auth, googleAuthProvider } from "../../../../utils/firebase.js";
+import { auth, googleAuthProvider } from "../../../../utils/firebase";
 
 export function SignInWithGoogle() {
   async function singInWithGoogle() {
