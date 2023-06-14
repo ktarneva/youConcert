@@ -7,9 +7,13 @@ export default function useBasicStatus(user: firebase.User) {
 
   useEffect(() => {
     if (user) {
-      const checkBasicStatus = async function () {
-        
-        setBasicStatus(await isUserBasic());
+      const checkBasicStatus = async function () {     
+        try {
+          setBasicStatus(await isUserBasic());
+        } catch (error) {
+          // Handle the error here if needed
+          console.error(error);
+        }
       };
       checkBasicStatus();
     }
