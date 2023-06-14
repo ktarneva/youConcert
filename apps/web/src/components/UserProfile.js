@@ -1,4 +1,4 @@
-export default function UserProfile({ user }) {
+export default function UserProfile({ user, checkoutSession }) {
   return (
     <div className="container mx-auto px-4 bg-[#9147ff] mb-[2px] z-10">
       <img
