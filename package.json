@@ -16,12 +16,15 @@
     "test": "turbo run test"
   },
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "global": "^4.4.0",
+    "jest": "^29.5.0",
+    "mongoose": "^7.2.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.35.0",
     "eslint-config-custom": "*",
-    "prettier": "latest",
-    "turbo": "latest"
+    "prettier": "latest"
   },
   "packageManager": "yarn@1.22.19",
   "engines": {

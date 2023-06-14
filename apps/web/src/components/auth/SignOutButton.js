@@ -1,4 +1,4 @@
-import { auth } from "../../utils/firebase";
+import { auth } from "../../../../utils/firebase";
 
 export function SignOutButton() {
   async function signOutButton() {

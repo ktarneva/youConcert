@@ -1,5 +1,5 @@
 FROM node:16.20.0
-WORKDIR /youConcert/apps/auth
+WORKDIR /youConcert/apps/recommendations
 COPY package*.json ./
 RUN yarn install
 COPY src/index.ts ./

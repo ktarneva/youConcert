@@ -1,6 +1,6 @@
-import { firestore } from "../../utils/firebase";
+import { firestore } from "../../../../utils/firebase";
 import { useCallback, useContext, useEffect, useState } from "react";
-import { UserContext } from "../../utils/context";
+import { UserContext } from "../../../../utils/context";
 import debounce from "lodash.debounce";
 
 /*  Username form */
