@@ -9,7 +9,7 @@ export function UsernameForm() {
   const [isValid, setIsValid] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { user, username } = useContext(UserContext);
+  const { user, username, streamKey } = useContext(UserContext);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -17,6 +17,19 @@ export function UsernameForm() {
     // Create refs for both documents
     const userDoc = firestore.doc(`users/${user.uid}`);
     const usernameDoc = firestore.doc(`usernames/${formValue}`);
+    const checkoutSession = userDoc.collection("checkout_sessions");
+
+    checkoutSession
+      .get(streamKey)
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // Access individual documents within the subcollection
+          console.log(doc.id, "=>", doc.data());
+        });
+      })
+      .catch((error) => {
+        console.log("Error getting subcollection documents:", error);
+      });
 
     // Commit both docs together as a batch write.
     const batch = firestore.batch();

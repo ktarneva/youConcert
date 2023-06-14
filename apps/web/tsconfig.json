@@ -4,6 +4,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/components/stripe/generateStreamKey.js"  ],
   "exclude": ["node_modules"]
 }

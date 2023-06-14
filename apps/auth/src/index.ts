@@ -8,10 +8,6 @@ server.listen(port, () => {
   log(`api running on ${port}`);
 });
 
-server.listen(8000, function () {
-  console.log("Listening on port 8000");
-});
-
 server.post("/auth", function (req,res) {
   const streamkey = req.body.key;
 
@@ -23,6 +19,9 @@ server.post("/auth", function (req,res) {
   /* Reject the stream */
   res.status(403).send();
   //
+  server.listen(8000, function () {
+    console.log("Listening on port 8000");
+  });
 });
 
 
