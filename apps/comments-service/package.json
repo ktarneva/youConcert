@@ -1,5 +1,5 @@
 {
-  "name": "recommendations",
+  "name": "comments-service",
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
@@ -15,9 +15,12 @@
     "amqplib": "^0.10.3",
     "express": "^4.18.2",
     "logger": "*",
+    "cors": "^2.8.5",
     "mongodb": "^5.6.0",
+    "mongoose": "^7.3.0",
     "nodemon": "^2.0.22",
     "turbo": "^1.10.3",
+    "morgan": "^1.10.0",
     "wait-port": "^1.0.4"
   },
   "devDependencies": {

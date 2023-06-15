@@ -1,12 +1,16 @@
 import dotenv from "dotenv";
+import path from "path";
 
-dotenv.config();
-const NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : "development";
-const API_PORT = process.env.API_PORT ? Number(process.env.API_PORT) : 8001;
+dotenv.config({
+  path: path.resolve(__dirname, `../../../.env`),
+});
+const NODE_ENV = process.env.NODE_ENV || "development";
+const PORT = (process.env.PORT) || "";
+const COMMENTS_SERVICE_PORT = (process.env.COMMENTS_SERVICE_PORT) || "";
 
 const MONGO_DB_USER = process.env.MONGO_DB_USER || "";
-const MONGO_DB_PASSWORD = process.env.MONGO_DB_PASSWORD || "";
-const MONGO_URL = `mongodb+srv://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@youconcertvids.wfko9s6.mongodb.net/`;
+const MONGO_DB_PASSWORD = process.env.MONGO_DB_PASSWORD ||encodeURIComponent("");
+const MONGO_URL =`mongodb+srv://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@youconcertvids.wfko9s6.mongodb.net`;
 
 const RabbitMQ_BASE_URL = process.env.RabbitMQ_BASE_URL || "";
 const RabbitMQ_USER = process.env.RabbitMQ_USER || "";
@@ -19,9 +23,13 @@ const RabbitMQ_URL = process.env.RabbitMQ_BASE_URL
     mongo:{
       url: string;
     }
-    api_port:{
+    port:{
       environment: string;
-      port: Number;
+      port: any;
+    }
+  comments_service_port:{
+      environment: string;
+      port: any;
     }
     rabbitMq: {
       url: string;
@@ -33,9 +41,13 @@ const RabbitMQ_URL = process.env.RabbitMQ_BASE_URL
     mongo: {
       url: MONGO_URL,
     },
-    api_port:{
+    port:{
         environment: NODE_ENV,
-        port: API_PORT,
+        port: PORT,
+      },
+    comments_service_port:{
+        environment: NODE_ENV,
+        port: COMMENTS_SERVICE_PORT,
       },
     rabbitMq: {
       url: RabbitMQ_URL,

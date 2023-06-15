@@ -31,3 +31,12 @@ services:
     container_name: auth_server
     environment:
       - PORT=8000
+  
+  comments-service:
+    build: ./apps/comments-service
+    restart: always
+    ports:
+      - "3007:3007"
+    container_name: comments-service
+    environment:
+      - PORT=3007

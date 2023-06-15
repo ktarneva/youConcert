@@ -1,32 +1,29 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
+import firebase from 'firebase/compat/app'; 
 
-import "firebase/compat/auth";
-import firebase from "firebase/compat/app";
-import "firebase/compat/storage";
-import "firebase/compat/firestore";
-import * as functions from 'firebase-functions'
-  
-const firebaseConfig = require('config')
-(functions.config().config.api_key)
-(functions.config().config.project_id)
-(functions.config().config.app_id)
-(functions.config().config.measurement_id)
-(functions.config().config.auth_domain)
-(functions.config().config.messaging_sender_id)
-(functions.config().config.storage_bucket)
+const firebaseConfig = {
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENT_ID,
+};
 
-// Use this to initialize the firebase App
 if (firebase.apps.length === 0) {
-  firebase.initializeApp(firebaseConfig);
+  initializeApp(firebaseConfig);
 }
 
 // Auth exports
-export const auth = firebase.auth();
-export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+export const auth = getAuth();
+export const googleAuthProvider = new GoogleAuthProvider();
 
-export const firestore = firebase.firestore();
-export const storage = firebase.storage();
+export const firestore = getFirestore();
+export const storage = getStorage();
 
 /// Helper functions
 

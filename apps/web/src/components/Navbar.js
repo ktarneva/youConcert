@@ -6,6 +6,8 @@ import { auth } from "../utils/firebase";
 import Logo from "../../public/youConcert_logo.png";
 import Image from "next/image";
 import Login from "./auth/Login";
+import React from "react";
+
 
 // Top navbar
 export default function Navbar() {
