@@ -10,8 +10,8 @@ services:
     volumes:
       - ./.rabbitmq_data:/var/lib/rabbitmq/mnesia
     environment:
-      - RABBITMQ_DEFAULT_USER=fvbnnbsb
-      - RABBITMQ_DEFAULT_PASS=Te-b67XCoOoLkO8vyGILAFnh7xzSMJP2
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
     healthcheck:
       test: [ "CMD", "rabbitmqctl", "status" ]
       interval: 30s

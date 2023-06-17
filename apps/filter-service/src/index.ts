@@ -11,7 +11,7 @@ server.listen(port, () => {
 });
 
 async function consumeMessages(): Promise<void> {
-  const connection = await amqp.connect("amqps://fvbnnbsb:Te-b67XCoOoLkO8vyGILAFnh7xzSMJP2@goose.rmq2.cloudamqp.com/fvbnnbsb");
+  const connection = await amqp.connect("amqp://rabbitmq:5672/");
   const channel = await connection.createChannel();
 
   await channel.assertExchange("commentExchange", "direct");
@@ -23,7 +23,7 @@ async function consumeMessages(): Promise<void> {
   channel.consume(q.queue, async (msg: amqp.ConsumeMessage | null) => {
     if (msg) {
       const data = JSON.parse(msg.content.toString());
-      console.log(data);
+      console.log("Received message:", data);
       channel.ack(msg);
 
       const comment = {
@@ -33,18 +33,18 @@ async function consumeMessages(): Promise<void> {
         videoID: data.videoID,
       };
 
-      try{
+      try {
         const newComment = await service.createComment(comment);
-        console.log("New Comment added", newComment)
-      }catch(error){
-        console.log(error);
+        console.log("New comment added:", newComment);
+      } catch (error) {
+        console.log("Error while creating comment:", error);
       }
-      }
-    });
-  }
-  
-  consumeMessages().catch((error) => {
-    console.error("Error occured while consuming messages:", error);
+    }
   });
-  
+}
+
+consumeMessages().catch((error) => {
+  console.error("Error occurred while consuming messages:", error);
+});
+
   
