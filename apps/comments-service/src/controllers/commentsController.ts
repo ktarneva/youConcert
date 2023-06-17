@@ -3,6 +3,7 @@ import { Document } from 'mongoose';
 import { commentsCollection } from '../schemas/comments';
 import RabbitMQProducer from '../services/RabbitMQ';
 
+// Create an instance of the RabbitMQProducer
 const rabbitMQProducer = new RabbitMQProducer();
 
 export const getComments = async (req: Request, res: Response): Promise<void> => {
@@ -34,13 +35,6 @@ export const getCommentDetails = async (req: Request, res: Response): Promise<vo
 
 export const updateComment = async (req: Request, res: Response): Promise<void> => {
   const id = req.params.id;
-  await rabbitMQProducer.publishMessage(
-    req.body.routingKey,
-    req.body.title,
-    req.body.createdAt,
-    req.body.body,
-    req.body.videoID
-  );
   try {
     const updatedComment: Document | null = await commentsCollection.findByIdAndUpdate(
       id,
@@ -73,22 +67,22 @@ export const getCommentsByVideoId = async (req: Request, res: Response): Promise
     res.status(500).json({ message: 'Server Error' });
   }
 };
-
-
 export const createComment = async (req: Request, res: Response): Promise<void> => {
   try {
-    const comment = new commentsCollection(req.body);
-    comment.videoId = req.body.videoID; // Assign the value to the correct field (videoId)
+    await rabbitMQProducer.publishMessage(
+      req.body.routingKey,
+      req.body.title,
+      req.body.createdAt,
+      req.body.body,
+      req.body.videoID
+    );
 
-    const savedComment: Document = await comment.save();
-
-    res.json({ message: 'Comment created successfully', comment: savedComment });
-  } catch (err) {
-    console.error(err);
+    res.json({ message: 'Comment sent for moderation' });
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Server Error' });
   }
-};
-
+}
 
 export const deleteComment = async (req: Request, res: Response): Promise<void> => {
   const id = req.params.id;

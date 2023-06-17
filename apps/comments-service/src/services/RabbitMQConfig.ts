@@ -1,9 +1,8 @@
 const rabbitMQ = {
-    url: "amqp://guest:guest@rabbit:5672",
-    exchangeName: "reviewExchange",
-  };
-  
-  export default {
-    rabbitMQ,
-  };
-  
+  url: "amqp://guest:guest@rabbit:5672",
+  exchangeName: "commentExchange",
+};
+
+export default {
+  rabbitMQ,
+};

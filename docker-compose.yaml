@@ -1,18 +1,21 @@
 version: "3.3"
 services:
   rabbitmq:
-    image: rabbitmq:3.11-management
+    image: rabbitmq:3-management-alpine
     hostname: rabbitmq
     container_name: rabbitmq
     ports:
       - 15672:15672
       - 5672:5672
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
     healthcheck:
       test: [ "CMD", "rabbitmqctl", "status" ]
       interval: 30s
       timeout: 10s
       retries: 5
-      
+
   rtmp:
     build: ./apps/rtmp
     restart: always
@@ -40,3 +43,19 @@ services:
     container_name: comments-service
     environment:
       - PORT=3007
+    depends_on:
+            rabbitmq:
+                condition: service_healthy
+
+  filter-service:
+    build: ./apps/filter-service
+    restart: always
+    ports:
+      - "3010:3010"
+    container_name: filter-service
+    environment:
+      - PORT=3010
+    depends_on:
+            rabbitmq:
+                condition: service_healthy
+

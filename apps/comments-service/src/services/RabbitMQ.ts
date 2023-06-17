@@ -1,11 +1,11 @@
 import * as amqp from "amqplib";
-import rabbitMQConfig from "./RabbitMQConfig";
+import config from "./RabbitMQConfig";
 
-class Producer {
+class RabbitMQProducer {
   channel: any;
 
   async createChannel() {
-    const connection = await amqp.connect(rabbitMQConfig.rabbitMQ.url);
+    const connection = await amqp.connect(config.rabbitMQ.url);
     this.channel = await connection.createChannel();
   }
 
@@ -20,10 +20,10 @@ class Producer {
       await this.createChannel();
     }
 
-    const exchangeName = rabbitMQConfig.rabbitMQ.exchangeName;
+    const exchangeName = config.rabbitMQ.exchangeName;
     await this.channel.assertExchange(exchangeName, "direct");
 
-    const reviewDetails = {
+    const commentDetails = {
       routingKey: routingKey,
       title: title,
       createdAt: createdAt,
@@ -34,16 +34,13 @@ class Producer {
     await this.channel.publish(
       exchangeName,
       routingKey,
-      Buffer.from(JSON.stringify(reviewDetails))
+      Buffer.from(JSON.stringify(commentDetails))
     );
 
     console.log(
       `The new ${routingKey} log is sent to exchange ${exchangeName}`
     );
-
-    // console.log(`Message is sent to exchange ${exchangeName}`);
   }
 }
 
-export default Producer;
-
+export default RabbitMQProducer;
