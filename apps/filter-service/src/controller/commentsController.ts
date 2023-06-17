@@ -1,20 +1,25 @@
-import { Request, Response, request, response } from 'express';
+import { Request, Response } from 'express';
 import { Document} from 'mongoose';
 import { commentsCollection } from '../schema/commentsSchema';
 
-export const createComment = async (comment:any): Promise<void> => {
+export const createComment = async (comment: any): Promise<Document> => {
   try {
-    const comment = new commentsCollection(request.body);
-    comment.videoId = request.body.videoID; 
+    const newComment = new commentsCollection({
+      title: comment.title,
+      body: comment.body,
+      createdAt: comment.createdAt,
+      videoId: comment.videoID,
+    });
 
-    const savedComment: Document = await comment.save();
+    const savedComment: Document = await newComment.save();
 
-    response.json({ message: 'Comment created successfully', comment: savedComment });
+    return savedComment;
   } catch (err) {
     console.error(err);
-    response.status(500).json({ error: 'Server Error' });
+    throw new Error('Server Error');
   }
 };
+
   export const updateComment = async (req: Request, res: Response): Promise<void> => {
     const id = req.params.id;
     try {

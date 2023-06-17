@@ -1,5 +1,5 @@
 const rabbitMQ = {
-  url: "amqp://guest:guest@rabbit:5672",
+  url: "amqps://fvbnnbsb:Te-b67XCoOoLkO8vyGILAFnh7xzSMJP2@goose.rmq2.cloudamqp.com/fvbnnbsb",
   exchangeName: "commentExchange",
 };
 

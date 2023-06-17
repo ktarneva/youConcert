@@ -12,35 +12,38 @@ class RabbitMQProducer {
   async publishMessage(
     routingKey: string,
     title: string,
-    createdAt: any,
     body: string,
+    createdAt:string,
     videoID: string
   ) {
     if (!this.channel) {
       await this.createChannel();
     }
-
+  
     const exchangeName = config.rabbitMQ.exchangeName;
     await this.channel.assertExchange(exchangeName, "direct");
-
+  
     const commentDetails = {
-      routingKey: routingKey,
+      commentType: routingKey,
       title: title,
-      createdAt: createdAt,
       body: body,
-      videoID: videoID,
+      createdAt: new Date(),
+      videoID: videoID
     };
-
+  
     await this.channel.publish(
       exchangeName,
       routingKey,
       Buffer.from(JSON.stringify(commentDetails))
     );
-
+  
     console.log(
       `The new ${routingKey} log is sent to exchange ${exchangeName}`
     );
+  
+    // Return the commentDetails as the result
+    return commentDetails;
+    }
   }
-}
-
+  
 export default RabbitMQProducer;

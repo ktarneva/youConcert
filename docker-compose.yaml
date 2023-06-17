@@ -2,19 +2,23 @@ version: "3.3"
 services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
-    hostname: rabbitmq
+    hostname: rabbit
     container_name: rabbitmq
     ports:
       - 15672:15672
       - 5672:5672
+    volumes:
+      - ./.rabbitmq_data:/var/lib/rabbitmq/mnesia
     environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_DEFAULT_USER=fvbnnbsb
+      - RABBITMQ_DEFAULT_PASS=Te-b67XCoOoLkO8vyGILAFnh7xzSMJP2
     healthcheck:
       test: [ "CMD", "rabbitmqctl", "status" ]
       interval: 30s
       timeout: 10s
       retries: 5
+    networks:
+      - app_network
 
   rtmp:
     build: ./apps/rtmp
@@ -25,6 +29,8 @@ services:
     container_name: rtmp_server
     volumes:
       - ./data:/tmp/hls
+    networks:
+      - app_network
 
   auth:
     build: ./apps/auth
@@ -34,6 +40,8 @@ services:
     container_name: auth_server
     environment:
       - PORT=8000
+    networks:
+      - app_network
   
   comments-service:
     build: ./apps/comments-service
@@ -46,6 +54,8 @@ services:
     depends_on:
             rabbitmq:
                 condition: service_healthy
+    networks:
+      - app_network
 
   filter-service:
     build: ./apps/filter-service
@@ -58,4 +68,9 @@ services:
     depends_on:
             rabbitmq:
                 condition: service_healthy
+    networks:
+      - app_network
 
+networks:
+  app_network:
+    external: true

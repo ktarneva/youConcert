@@ -9,9 +9,13 @@ const commentsSchema = new Schema({
         type: String,
         required:true
     },
-    videoId: {
+    createdAt:{
         type: String,
         required:true
+    },
+    videoId:{
+        type:String,
+        require:true
     }
 },{timestamps: true});
 

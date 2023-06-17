@@ -2,7 +2,7 @@ import { json, urlencoded } from "body-parser";
 import morgan from "morgan";
 import cors from "cors";
 import express from "express";
-import mongoose, { ConnectOptions } from 'mongoose';
+import mongoose from 'mongoose';
 
 
 export const createServer = () => {

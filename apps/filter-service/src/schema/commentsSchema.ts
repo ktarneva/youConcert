@@ -9,14 +9,14 @@ const commentsSchema = new Schema({
         type: String,
         required:true
     },
-    videoId: {
+    createdAt:{
         type: String,
         required:true
     },
-    moderationStatus:  { 
-        type: String,
-         enum: ['pending', 'approved', 'rejected'], default: 'pending' 
-        },
+    videoId:{
+        type:String,
+        require:true
+    }
 },{timestamps: true});
 
 export const commentsCollection = mongoose.model("Comments", commentsSchema);
