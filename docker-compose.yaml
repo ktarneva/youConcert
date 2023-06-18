@@ -32,8 +32,10 @@ services:
     networks:
       - app_network
 
-  auth:
-    build: ./apps/auth
+  auth:  
+    build: 
+      context: .
+      dockerfile: ./apps/auth/Dockerfile
     restart: always
     ports:
       - "8000:8000"
@@ -44,7 +46,9 @@ services:
       - app_network
   
   comments-service:
-    build: ./apps/comments-service
+    build: 
+      context: .
+      dockerfile: ./apps/comments-service/Dockerfile
     restart: always
     ports:
       - "3007:3007"
@@ -58,7 +62,9 @@ services:
       - app_network
 
   filter-service:
-    build: ./apps/filter-service
+    build: 
+      context: .
+      dockerfile: ./apps/filter-service/Dockerfile
     restart: always
     ports:
       - "3010:3010"
