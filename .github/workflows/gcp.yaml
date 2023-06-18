@@ -21,12 +21,10 @@
             export_default_credentials: true
 
         - name: Build Docker Image
-          run: |
-            for dir in apps/*/; do
-              image_name=$(basename "$dir")
-              docker build -t ${{ env.PROJECT_ID }}/$image_name:latest "$dir"
-              docker push ${{ env.PROJECT_ID }}/$image_name:latest
-            done
+          run: docker build --file ./apps/comment-service/Dockerfile -t $IMAGE_NAME:latest .
+           docker build --file ./apps/filter-service/Dockerfile -t $IMAGE_NAME:latest .
+           docker build --file ./apps/auth/Dockerfile -t $IMAGE_NAME:latest .
+           docker build --file ./apps/rtmp/Dockerfile -t $IMAGE_NAME:latest .
     
         - name: Automatic Tagging of Releases
           id: increment-git-tag
