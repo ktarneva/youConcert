@@ -24,10 +24,9 @@
           run: |
             for dir in apps/*/; do
               image_name=$(basename "$dir")
-              docker build -t ${{ env.PROJECT_ID }}/$image_name:latest "$dir"
+              docker build -f "$dir/Dockerfile" -t ${{ env.PROJECT_ID }}/$image_name:latest "$dir"
               docker push ${{ env.PROJECT_ID }}/$image_name:latest
             done
-    
         - name: Automatic Tagging of Releases
           id: increment-git-tag
           run: |
