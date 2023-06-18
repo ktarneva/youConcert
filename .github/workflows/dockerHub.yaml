@@ -28,7 +28,7 @@ jobs:
         name: Build and push comments-service
         uses: docker/build-push-action@v4
         with:
-          context: ./apps/comments-service
+          context: .
           file: ./apps/comments-service/Dockerfile
           push: true
           tags: youconcert-comments-service:latest
@@ -36,7 +36,7 @@ jobs:
         name: Build and push filter-service
         uses: docker/build-push-action@v4
         with:
-          context: ./apps/filter-service
+          context: .
           file: ./apps/filter-service/Dockerfile
           push: true
           tags: youconcert-filter-service:latest
@@ -44,7 +44,7 @@ jobs:
         name: Build and push auth
         uses: docker/build-push-action@v4
         with:
-          context: ./apps/auth
+          context: .
           file: ./apps/auth/Dockerfile
           push: true
           tags: youconcert-auth:latest
@@ -52,7 +52,7 @@ jobs:
         name: Build and push rtmp
         uses: docker/build-push-action@v4
         with:
-          context: ./apps/rtmp
+          context: .
           file: ./apps/rtmp/Dockerfile
           push: true
           tags: youconcert-rtmp:latest
