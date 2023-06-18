@@ -4,7 +4,7 @@ name: CI
 
 env:
   resourceGroup: 'youConcert'
-  kubernetesVersion: '1.27.2'
+  kubernetesVersion: '1.17.7'
   name: 'youconcert2'
 
 # Controls when the action will run. 
@@ -38,4 +38,3 @@ jobs:
       with:
         # Specify the script here
         inlineScript: az aks create -g ${{ env.resourceGroup }} -n ${{ env.name }} --kubernetes-version ${{ env.kubernetesVersion }} --generate-ssh-keys
-        azcliversion: agentazcliversion
