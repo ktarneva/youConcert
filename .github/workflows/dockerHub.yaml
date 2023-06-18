@@ -31,7 +31,7 @@ jobs:
           context: ./apps/comments-service
           file: ./apps/comments-service/Dockerfile
           push: true
-          tags: ${{secrets.DOCKERHUB_USERNAME}}/youconcert-comments-service:latest
+          tags: youconcert-comments-service:latest
       -
         name: Build and push filter-service
         uses: docker/build-push-action@v4
