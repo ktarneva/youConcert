@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filter-deployment
+  labels:
+    app: filter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: filter
+  template:
+    metadata:
+      labels:
+        app: filter
+    spec:
+      containers:
+        - name: filter
+          image: youconcertcontainer.azurecr.io/service/filter
+          ports:
+            - containerPort: 3010  
+          envFrom:
+            - secretRef:
+                name: secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: filter-service
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 3010
+      targetPort: 3010
+ selector:
+    app: filter

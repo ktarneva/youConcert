@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 
 export const createServer = () => {
   const app = express();
-const MONGO_URL = "mongodb+srv://kikitarneva:Bvm2Ze7Gocin3NEF@youconcertvids.wfko9s6.mongodb.net/youConcert";
+const MONGO_URL = "mongodb+srv://kikitarneva:Bvm2Ze7Gocin3NEF@cluster1.4tcnjjg.mongodb.net/youConcert";
 
 
 const connectToMongoDB = async (): Promise<void> => {
