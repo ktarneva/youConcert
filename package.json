@@ -1,6 +1,7 @@
 {
   "name": "with-docker",
   "version": "0.0.0",
+  "packageManager": "yarn",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -34,6 +35,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.35.0",
+    "@turbo/codemod": "^1.10.3",
     "eslint-config-custom": "*",
     "prettier": "latest"
   },
