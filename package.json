@@ -1,7 +1,6 @@
 {
   "name": "with-docker",
   "version": "0.0.0",
-  "packageManager": "yarn@1.22.19",
   "private": true,
   "workspaces": [
     "apps/*",
