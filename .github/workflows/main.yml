@@ -34,7 +34,7 @@ jobs:
         creds: ${{ secrets.AZUREAUTH }}
 
     - name: Azure CLI Action
-      uses: Azure/cli@1.0.4
+      uses: Azure/cli@1.0.7
       with:
         # Specify the script here
         inlineScript: az aks create -g ${{ env.resourceGroup }} -n ${{ env.name }} --kubernetes-version ${{ env.kubernetesVersion }} --generate-ssh-keys
