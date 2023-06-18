@@ -16,12 +16,33 @@ spec:
     spec:
       containers:
         - name: comment
-          image: youconcertcontainer.azurecr.io/service/comment
+          image: ktarneva/youconcert-comments-service:latest
           ports:
-            - containerPort: 3005  
-          envFrom:
-            - secretRef:
-                name: secrets
+            - containerPort: 3005
+          env:
+            - name: MONGO_URL
+              value: mongodb+srv://kikitarneva:Bvm2Ze7Gocin3NEF@cluster1.4tcnjjg.mongodb.net/youConcert
+
+---
+apiVersion: "autoscaling/v2"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: comments-service
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "comments-service"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: "Resource"
+      resource:
+        name: "cpu"
+        target:
+          type: Utilization
+          averageUtilization: 10
+
 ---
 apiVersion: v1
 kind: Service
@@ -33,5 +54,5 @@ spec:
     - protocol: TCP
       port: 3005
       targetPort: 3005
- selector:
+  selector:
     app: comment

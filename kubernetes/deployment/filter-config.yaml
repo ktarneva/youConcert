@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: filter
-          image: youconcertcontainer.azurecr.io/service/filter
+          image: youconcert-filter-service:latest
           ports:
             - containerPort: 3010  
           envFrom:

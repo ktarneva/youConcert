@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: rtmp
-          image: youconcertcontainer.azurecr.io/livestream/rtmp
+          image: youconcert-rtmp:latest
           ports:
             - containerPort: 1935  
 ---

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: youconcertcontainer.azurecr.io/livestream/auth 
+          image: youconcert-auth:latest
           ports:
             - containerPort: 8000
           envFrom:
