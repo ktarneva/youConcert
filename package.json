@@ -5,8 +5,13 @@
   "packageManager": "yarn@1.22.19",
   "private": true,
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "packages/*",
+    "apps/auth/*",
+    "apps/rtml/*",
+    "apps/filter-service/*",
+    "apps/comment-service/*",
+    "apps/api/*",
+    "apps/web/*"
   ],
   "scripts": {
     "build": "turbo run build",
