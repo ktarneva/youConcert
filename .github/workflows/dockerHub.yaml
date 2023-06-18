@@ -31,7 +31,7 @@ jobs:
           context: ./apps/comments-service
           file: ./apps/comments-service/Dockerfile
           push: true
-          tags: ${{secrets.DOCKERHUB_USERNAME}}/youconcert-comments-service
+          tags: youconcert-comments-service
       -
         name: Build and push filter-service
         uses: docker/build-push-action@v4
@@ -39,7 +39,7 @@ jobs:
           context: ./apps/filter-service
           file: ./apps/filter-service/Dockerfile
           push: true
-          tags: ${{secrets.DOCKERHUB_USERNAME}}/youconcert-filter-service
+          tags: youconcert-filter-service
       -
         name: Build and push auth
         uses: docker/build-push-action@v4
@@ -47,7 +47,7 @@ jobs:
           context: ./apps/auth
           file: ./apps/auth/Dockerfile
           push: true
-          tags: ${{secrets.DOCKERHUB_USERNAME}}/youconcert-auth
+          tags: youconcert-auth
       -
         name: Build and push rtmp
         uses: docker/build-push-action@v4
@@ -55,4 +55,4 @@ jobs:
           context: ./apps/rtmp
           file: ./apps/rtmp/Dockerfile
           push: true
-          tags: ${{secrets.DOCKERHUB_USERNAME}}/youconcert-rtmp
+          tags: youconcert-rtmp
