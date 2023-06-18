@@ -37,3 +37,7 @@ yarn-error.log*
 /test-results/
 /playwright-report/
 /playwright/.cache/
+.rabbitmq_data/rabbit@rabbit/DECISION_TAB.LOG
+.rabbitmq_data/rabbit@rabbit/LATEST.LOG
+.rabbitmq_data/rabbit@rabbit/rabbit_durable_queue.DCD
+.rabbitmq_data/rabbit@rabbit/rabbit_serial
