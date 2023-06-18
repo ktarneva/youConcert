@@ -35,7 +35,7 @@
         - name: Configure Docker Client
           run: |-
             gcloud auth configure-docker --quiet
-            gcloud auth configure-docker europe-west1-docker.pkg.dev --quiet
+            gcloud auth configure-docker gcr.io
     
         - name: Push Docker Image to Container Registry (GCR)
           env:
