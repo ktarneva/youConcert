@@ -9,7 +9,7 @@ export default function Stripe() {
   return (
     <div>
       {!userIsBasic ? (
-        <button onClick={() => createCheckoutSession(user.uid)}>
+        <button className="px-4 py-[6px] rounded-lg font-bold bg-[#9147ff] mr-2"onClick={() => createCheckoutSession(user.uid)}>
           Upgrade to basic!
         </button>
       ) : (

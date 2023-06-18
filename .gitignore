@@ -4,7 +4,7 @@
 node_modules
 .pnp
 .pnp.js
-
+.rabbitmq_data
 # testing
 coverage
 
@@ -34,3 +34,6 @@ yarn-error.log*
 
 # turbo
 .turbo
+/test-results/
+/playwright-report/
+/playwright/.cache/

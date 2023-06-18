@@ -5,8 +5,9 @@ import { UserContext } from "../utils/context";
 import { auth } from "../utils/firebase";
 import Logo from "../../public/youConcert_logo.png";
 import Image from "next/image";
+import Login from "./auth/Login";
 import React from "react";
-import { SignInWithGoogle } from "../components/auth/SignInWithGoogle";
+
 
 // Top navbar
 export default function Navbar() {
@@ -54,13 +55,9 @@ export default function Navbar() {
           </li>
         </>
       )}
-
-      {/* user is not signed OR has not created username */}
-      {!username && (
-        <li className="hidden md:flex grow items-center justify-end">
-            <SignInWithGoogle />      
-        </li>
-      )}
+      <li className="hidden md:flex grow items-center justify-end">
+        <Login />
+      </li>
     </ul>
   );
 }
