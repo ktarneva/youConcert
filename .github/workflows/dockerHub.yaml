@@ -1,0 +1,58 @@
+# on:
+#   push:
+#     branches:
+#       - "main"
+
+name: docker
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_TOKEN}}
+      -
+        name: Docker Build
+        uses: docker/setup-buildx-action@v2  
+      -
+        name: Build and push comments-service
+        uses: docker/build-push-action@v4
+        with:
+          context: ./apps/comments-service
+          file: ./apps/comments-service/Dockerfile
+          push: true
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/comments-service:latest
+      -
+        name: Build and push filter-service
+        uses: docker/build-push-action@v4
+        with:
+          context: ./apps/filter-service
+          file: ./apps/filter-service/Dockerfile
+          push: true
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/filter-service:latest
+      -
+        name: Build and push auth
+        uses: docker/build-push-action@v4
+        with:
+          context: ./apps/auth
+          file: ./apps/auth/Dockerfile
+          push: true
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/auth-server:latest
+      -
+        name: Build and push rtmp
+        uses: docker/build-push-action@v4
+        with:
+          context: ./apps/rtmp
+          file: ./apps/rtmp/Dockerfile
+          push: true
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/rtmp-server:latest
