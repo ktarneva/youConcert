@@ -6,7 +6,11 @@
   "private": true,
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "auth/*",
+    "rtml/*",
+    "filter-service/*",
+    "comment-service/*"
   ],
   "scripts": {
     "build": "turbo run build",
