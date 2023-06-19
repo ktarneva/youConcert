@@ -2,11 +2,6 @@ import { log } from "logger";
 import createServer from "./server";
 
 const server = createServer();
-const port = 3002;
-
-server.listen(port, () => {
-  log(`api running on ${port}`);
-});
 
 server.post("/auth", function (req,res) {
   const streamkey = req.body.key;
