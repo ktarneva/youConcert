@@ -18,7 +18,7 @@
     "logger": "*",
     "cors": "^2.8.5",
     "mongodb": "^5.6.0",
-    "mongoose": "^7.3.0",
+    "mongoose": "^7.3.3",
     "nodemon": "^2.0.22",
     "turbo": "^1.10.3",
     "morgan": "^1.10.0",
